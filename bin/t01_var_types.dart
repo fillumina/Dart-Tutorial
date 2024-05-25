@@ -5,8 +5,12 @@ Variables defined here are global to the file.
 
 // this is a single line comment.
 
+// dart supports global variables but they should be used seldomly because
+// of implications for testing, code maintanability and coherence.
+// It is advised to use them only to keep constant values (const)
+
 // define a string global variable with a value enclosed by single quotes
-String myGlobal = 'this is a global var'; // a comment can follow a statement
+const String myGlobal = 'global var'; // a comment can follow a statement
 
 // Dart allows aliases, here the int type can be aliased by MyInteger
 typedef MyInteger = int;

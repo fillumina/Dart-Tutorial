@@ -1,7 +1,8 @@
 // async await keywords help manage future code in a more natural way
 
-// 'async' functions always return a Future (even if the return is missing) and
-// the type of the generics is the type the function return (void in this case).
+// 'async' functions always create and return a Future (even if the return is
+// missing) and the type of the generics is the type the function return
+// (void in this case).
 // async methods usually contain code that will be executed after an event in
 // the future so they should be called with the 'await' keyword that signal
 // that the caller should *wait* for the function to actually complete.

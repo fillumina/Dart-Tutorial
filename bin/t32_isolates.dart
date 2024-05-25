@@ -12,13 +12,19 @@ Future<void> asynchronousCounting() async {
 Future<int> veryLongOperation() async {
   // 3 seconds delay
   await Future.delayed(Duration(seconds: 3), () {});
+  // the status is not synced with the main isolation
+  print('status: $status');
   return 42;
 }
+
+String status = 'start';
 
 Future<void> runIsolate() async {
   // the program wait for the Isolate to terminate.
   // veryLongOpereation() does not consume microtasks on the local isolate.
-  int result = await Isolate.run<int>(() => veryLongOperation());
+  int result = await Isolate.run<int>(
+      // in the isolate the status is in its definition state
+      () => veryLongOperation());
   assert(result == 42);
   print('the isolate has completed with result: $result');
 }
@@ -28,12 +34,18 @@ Future<void> main(List<String> args) async {
   asynchronousCounting();
 
   // the program doen't wait for the Isolate to terminate
+  printStatus('before first runIsolate()');
   runIsolate();
-  print('after the first runIsolate()');
+  printStatus('after the first and before second runIsolate()');
 
   // unlesss we use 'await' keyword
   await runIsolate();
-  print('after the second runIsolate()');
+  printStatus('after the second runIsolate()');
 
-  print('end main()');
+  printStatus('end main()');
+}
+
+void printStatus(String s) {
+  status = s;
+  print('change status to: $status');
 }
