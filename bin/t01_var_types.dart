@@ -6,8 +6,8 @@ Variables defined here are global to the file.
 // this is a single line comment.
 
 // dart supports global variables but they should be used seldomly because
-// of implications for testing, code maintanability and coherence.
-// It is advised to use them only to keep constant values (const)
+// of implications for testing, code maintainability and coherence.
+// It is advised to use them only to keep constant values (const).
 
 // define a string global variable with a value enclosed by single quotes
 const String myGlobal = 'global var'; // a comment can follow a statement
@@ -31,10 +31,10 @@ void main(List<String> args) {
   String anotherName = "That's a quote";
   assert(anotherName.runtimeType == String);
 
-  // a variable can be always reassigned with a new value
+  // a variable can be always reassigned with a new value with the same type
   name = 'Pluto';
 
-  // string supports templating
+  // strings supports templating
   String hello = 'Hello $name';
   assert(hello == 'Hello Pluto');
 
@@ -66,19 +66,24 @@ void main(List<String> args) {
   assert(aDouble.runtimeType == double);
 
   // initialize multiple variables of the same type at once
+  // note that y is not assigned so it defaults to null
+  // the 'int?' means that the int variables can be null
   int? x = 1, y, z = 3;
 
   // the following ignore:.. line is to silence the automatic hint of VSCode
   // ignore: unnecessary_null_comparison
   assert(x == 1 && y == null && z == 3);
 
-  // multiline string (preserves the indentation)
-  // a multiline string can contain quotes
+  // multiline strings preserve indentation
+  // a multiline string can contain single or double quotes and templates
+  // the first newline after """ is ignored but might be useful to keep
+  // indentation
   String multiLineString = """
     this' is a 
     multi line
     "string",
     note that the tab is kept.
+    template: $x
   """;
 
   // using template to print the value of the variable
