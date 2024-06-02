@@ -204,4 +204,7 @@ void main(List<String> args) {
   // ignore: avoid_init_to_null
   double? mightBeNull = null;
   assert(mightBeNull.runtimeType == null.runtimeType);
+
+  // void is for a variable that cannot be used
+  void empty = 'a';
 }
